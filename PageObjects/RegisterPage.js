@@ -11,27 +11,29 @@ class RegisterPage{
         this.email = this.page.locator("#userEmail");
         this.phoneNumber = this.page.locator("#userMobile");
         this.password = this.page.locator("#userPassword");
-        this.comfirmPassword = this.page.locator("#confirmPassword");
-        this.registerBanner = this.page.getByText("Register");
+        this.confirmPassword = this.page.locator("#confirmPassword");
+        this.comfirmPassword = this.confirmPassword;
+        this.registerBanner = this.page.getByRole('heading', { name: 'Register' });
         this.occupationDropdown = this.page.locator(".custom-select");
         this.checkout = this.page.locator("[type='checkbox']");
         this.maleOption = this.page.locator("[value='Male']");
         this.femaleOption = this.page.locator("[value='Female']");
-        this.registerButton = this.page.locator(".login");
-        this.alreadyHaveAccountText = this.page.getByText("Already have an account? ");
+        this.registerButton = this.page.getByRole('button', { name: 'Register' });
+        this.alreadyHaveAccountText = this.page.getByText("Already have an account?");
         this.loginHereText = this.page.getByText("Login here");
 
-        this.dummyEmail = this.page.getByRole('link', { name: 'dummywebsite@rahulshettyacademy.com' });
+        this.dummyEmail = this.page.locator('a[href="emailto:dummywebsite@rahulshettyacademy.com"]');
 
         // icons locators
         this.facebookIcon = this.page.locator("//i[@class='fa fa-facebook']");
         this.instagramIcon = this.page.locator("//i[@class='fa fa-instagram']");
         this.twitterIcon = this.page.locator("//i[@class='fa fa-twitter']");
         this.youtubeIcon = this.page.locator("//i[@class='fa fa-youtube']");
+
     }
 
     async goTo(){
-        await this.url.goto();
+        return await this.page.goto(this.url);
     }
 
     getfirstName(){
@@ -58,8 +60,12 @@ class RegisterPage{
         return this.password;
     }
 
+    getconfirmPassword(){
+        return this.confirmPassword;
+    }
+
     getcomfirmPassword(){
-        return this.comfirmPassword;
+        return this.confirmPassword;
     }
 
     getregisterBanner(){
@@ -138,8 +144,8 @@ class RegisterPage{
         return this.youtubeIcon;
     }
 
-    async getDummyEmailText(){
-        return await this.dummyEmail.textContent()
+    getDummyEmailText(){
+        return this.dummyEmail;
     }
 }
 

@@ -1,7 +1,7 @@
 const {test, expect}= require('@playwright/test');
 const {LoginPage} = require('../PageObjects/LoginPage');
 
-test.describe("TS_01 - Verify all UI elements load correctly on the Login page", () => {
+test.describe("TS_01 - Verify all UI elements load correctly on the Login page", {tag: '@regression'}, () => {
 
     test('TC_001 - Verify Login page loads successfully', async ({page}) => {
         const loginPage = new LoginPage(page);
@@ -62,7 +62,7 @@ test.describe("TS_01 - Verify all UI elements load correctly on the Login page",
     });
 });
 
-test.describe('TS_02 - Email Field Validation', async () => {
+test.describe('TS_02 - Email Field Validation', {tag: '@regression'}, async () => {
 
     test('TC_008 - Verify login with valid email and valid password', async({page}) => {
         const loginPage = new LoginPage(page);
@@ -124,7 +124,7 @@ test.describe('TS_02 - Email Field Validation', async () => {
     });
 });
 
-test.describe('TS_03 - Password Field Validation', async () => {
+test.describe('TS_03 - Password Field Validation', {tag: '@regression'}, async () => {
 
     test('TC_015 - Verify Password field masks entered characters', async ({page}) => {
         const loginPage = new LoginPage(page);
@@ -167,7 +167,7 @@ test.describe('TS_03 - Password Field Validation', async () => {
     });
 });
 
-test.describe('TS_04 - Login Functionality', async () => {
+test.describe('TS_04 - Login Functionality',{tag: '@regression'}, async () => {
 
     test('TC_020 - Verify both Email and Password fields empty on Login click', async ({page}) => {
         const loginPage = new LoginPage(page);
@@ -209,7 +209,7 @@ test.describe('TS_04 - Login Functionality', async () => {
         const loginPage = new LoginPage(page);
         await loginPage.goTo();
         for(let i=0 ; i<5 ; i++){
-            const [response] = promise.all(
+            const [response] = await Promise.all(
                 [page.waitForResponse(r => r.url().includes('/api/ecom/auth/login')), loginPage.login("SAMPLE123ABC@GMAIL.COM", "SAMPLE@123"),]
             )
             expect(response.status()).toBe(400);
@@ -226,7 +226,7 @@ test.describe('TS_04 - Login Functionality', async () => {
     });
 });
 
-test.describe('TS_05 - Forgot Password Link', async () => {
+test.describe('TS_05 - Forgot Password Link',{tag: '@regression'}, async () => {
 
     test('TC_027 - Verify "Forgot password?" link is clickable', async ({page}) => {
         const loginPage = new LoginPage(page);
@@ -247,7 +247,7 @@ test.describe('TS_05 - Forgot Password Link', async () => {
     });
 });
 
-test.describe('TS_06 - Register Navigation', async () => {
+test.describe('TS_06 - Register Navigation', {tag: '@regression'}, async () => {
 
     test('TC_029 - Verify "Register here" link navigates to Registration page', async ({page}) => {
         const loginPage = new LoginPage(page);
