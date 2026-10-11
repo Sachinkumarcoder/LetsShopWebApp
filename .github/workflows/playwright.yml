@@ -2,8 +2,10 @@
 name: Playwright QA CI
 
 on:
-  push: [master, main]
-  pull_request: [master, main]
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
   workflow_dispatch: # Allows manual triggering of the workflow from the Actions tab in GitHub
 
 permissions:
