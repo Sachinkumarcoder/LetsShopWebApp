@@ -58,10 +58,13 @@ test.describe('TS_R01 - Page UI & Layout',{tag: '@regression'}, async () => {
     });
 });
 
-test.describe('TS_R02 - First Name Field Validation', async () => {
+test.describe('TS_R02 - First Name Field Validation', {tag: '@dummy'}, async () => {
     test('TC_R006 - Verify First Name field accepts valid alphabetic input', async ({page}) => {
         const registerPage = new RegisterPage(page);
-        
+        await registerPage.goTo();
+        await registerPage.getlastName().fill("Shetty");
+        await expect(registerPage.getlastName()).toHaveValue(/^[a-zA-Z]+$/);
+
     })
 });
 
